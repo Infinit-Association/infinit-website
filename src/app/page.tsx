@@ -222,10 +222,13 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="order-1 lg:order-2"
+              className="order-1 lg:order-2 relative w-full"
             >
-              {/* RESTORED: Changed back to pointer-events-auto so you can spin it on mobile! */}
-              <div className="w-full h-[80vh] min-h-[600px] relative pointer-events-auto flex justify-center items-center">
+              {/* 🛡️ THE MOBILE SHIELD 🛡️ */}
+              {/* This invisible box catches your thumb so the page can scroll. It disappears on desktop (lg:hidden) so you can still click and spin! */}
+              <div className="absolute inset-0 z-50 block lg:hidden" />
+
+              <div className="w-full h-[80vh] min-h-[600px] relative flex justify-center items-center pointer-events-auto">
                 <Suspense fallback={
                   <div className="flex items-center justify-center w-full h-full">
                     <div className="w-16 h-16 border-2 border-[#E60000]/50 border-t-[#FFD700] rounded-full animate-spin" />
