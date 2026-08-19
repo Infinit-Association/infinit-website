@@ -224,7 +224,8 @@ export default function HomePage() {
               transition={{ duration: 1, delay: 0.3 }}
               className="order-1 lg:order-2"
             >
-              <div className="w-full h-[80vh] min-h-[600px] relative pointer-events-auto flex justify-center items-center">
+              {/* FIXED: Changed pointer-events-auto to pointer-events-none lg:pointer-events-auto */}
+              <div className="w-full h-[80vh] min-h-[600px] relative pointer-events-none lg:pointer-events-auto flex justify-center items-center">
                 <Suspense fallback={
                   <div className="flex items-center justify-center w-full h-full">
                     <div className="w-16 h-16 border-2 border-[#E60000]/50 border-t-[#FFD700] rounded-full animate-spin" />
