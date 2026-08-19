@@ -160,6 +160,7 @@ export default function HeroCanvas() {
       }}
       dpr={[1, 2]}
       className="w-full h-full"
+      style={{ touchAction: 'pan-y' }} // <--- ADDED: Tells browser to allow vertical scrolling
     >
       <ambientLight intensity={0.3} />
       <pointLight position={[3, 3, 3]} intensity={2} color="#E60000" />
@@ -176,8 +177,8 @@ export default function HeroCanvas() {
         enableZoom={false}
         autoRotate
         autoRotateSpeed={0.5}
-        maxPolarAngle={Math.PI / 1.8}
-        minPolarAngle={Math.PI / 3}
+        maxPolarAngle={Math.PI / 2} // <--- CHANGED: Locks vertical rotation
+        minPolarAngle={Math.PI / 2} // <--- CHANGED: Locks vertical rotation
       />
     </Canvas>
   );
