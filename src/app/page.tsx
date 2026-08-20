@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Zap, Users, Lightbulb, ChevronDown, Star, Trophy, Code2, Cpu, Globe, Shield } from "lucide-react";
 import Link from "next/link";
 import Script from "next/script";
@@ -83,60 +83,13 @@ const features = [
 ];
 
 export default function HomePage() {
-  const [showIntro, setShowIntro] = useState(true);
-
-  // Check if they've already seen the intro this session so it doesn't replay annoyingly
-  useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem("hasSeenIntro");
-    if (hasSeenIntro) {
-      setShowIntro(false);
-    }
-  }, []);
-
-  // Function to end the intro and reveal the site
-  const finishIntro = () => {
-    sessionStorage.setItem("hasSeenIntro", "true");
-    setShowIntro(false);
-  };
-
   return (
     <>
-      {/* ─── Full Screen Intro Video Overlay ─── */}
-      <AnimatePresence>
-        {showIntro && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center overflow-hidden"
-          >
-            <video
-              autoPlay
-              muted
-              playsInline
-              onEnded={finishIntro}
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="/intro.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            {/* Optional Skip Button for returning users */}
-            <button
-              onClick={finishIntro}
-              className="absolute bottom-10 right-10 z-[101] text-white/50 hover:text-white font-[family-name:var(--font-inter)] tracking-[0.2em] text-xs uppercase transition-colors"
-            >
-              Skip Intro
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ─── Main Website Content (Revealed after video) ─── */}
+      {/* ─── Main Website Content ─── */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: showIntro ? 0 : 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="relative overflow-hidden w-full"
       >
         {/* ─── Hero Section ─── */}
@@ -225,7 +178,6 @@ export default function HomePage() {
               className="order-1 lg:order-2 relative w-full"
             >
               {/* 🛡️ THE MOBILE SHIELD 🛡️ */}
-              {/* This invisible box catches your thumb so the page can scroll. It disappears on desktop (lg:hidden) so you can still click and spin! */}
               <div className="absolute inset-0 z-50 block lg:hidden" />
 
               <div className="w-full h-[80vh] min-h-[600px] relative flex justify-center items-center pointer-events-auto">
