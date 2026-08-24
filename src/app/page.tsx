@@ -275,18 +275,20 @@ export default function HomePage() {
                 />
 
                 <div className="relative z-10">
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                    style={{ background: `${card.color}20`, border: `1px solid ${card.color}40` }}
-                  >
-                    <card.icon size={26} style={{ color: card.color }} />
+                  <div className="flex items-center gap-3 mb-5">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: `${card.color}20`, border: `1px solid ${card.color}40` }}
+                    >
+                      <card.icon size={24} style={{ color: card.color }} />
+                    </div>
+                    <h3
+                      className="font-[family-name:var(--font-inter)] font-bold text-2xl leading-tight"
+                      style={{ color: card.color }}
+                    >
+                      {card.title}
+                    </h3>
                   </div>
-                  <h3
-                    className="font-[family-name:var(--font-inter)] font-bold text-2xl mb-3"
-                    style={{ color: card.color }}
-                  >
-                    {card.title}
-                  </h3>
                   <p className="font-[family-name:var(--font-roboto)] text-gray-400 text-sm leading-relaxed">
                     {card.desc}
                   </p>
@@ -340,12 +342,14 @@ export default function HomePage() {
                 whileHover={{ y: -6, scale: 1.02 }}
                 className="w-full lg:w-[23.5%] bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-[#FFD700]/50 transition-all duration-300 group shadow-xl"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#FFD700]/10 border border-[#FFD700]/20 flex items-center justify-center mb-4 group-hover:bg-[#FFD700]/15 transition-colors">
-                  <f.icon size={22} className="text-[#FFD700]" />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-[#FFD700]/10 border border-[#FFD700]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FFD700]/15 transition-colors">
+                    <f.icon size={20} className="text-[#FFD700]" />
+                  </div>
+                  <h4 className="font-[family-name:var(--font-inter)] font-bold text-white text-lg leading-tight">
+                    {f.title}
+                  </h4>
                 </div>
-                <h4 className="font-[family-name:var(--font-inter)] font-bold text-white text-lg mb-2">
-                  {f.title}
-                </h4>
                 <p className="font-[family-name:var(--font-roboto)] text-gray-500 text-sm leading-relaxed">
                   {f.desc}
                 </p>

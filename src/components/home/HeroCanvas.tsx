@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
@@ -22,11 +22,10 @@ function ParticleField() {
       pos[i3 + 1] = (Math.random() - 0.5) * 14;
       pos[i3 + 2] = (Math.random() - 0.5) * 8;
 
-      // Red to gold gradient based on position
       const t = (pos[i3 + 1] + 7) / 14;
-      col[i3] = 0.9 - t * 0.2;       // R
-      col[i3 + 1] = t * 0.85;        // G (0 for red, 0.85 for gold)
-      col[i3 + 2] = 0;               // B
+      col[i3] = 0.9 - t * 0.2;
+      col[i3 + 1] = t * 0.85;
+      col[i3 + 2] = 0;
     }
     return [pos, col];
   }, []);
@@ -37,7 +36,6 @@ function ParticleField() {
     meshRef.current.rotation.y = time * 0.04 + mouse.x * 0.3;
     meshRef.current.rotation.x = mouse.y * 0.2;
 
-    // Gentle wave
     const posAttr = meshRef.current.geometry.attributes.position as THREE.BufferAttribute;
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
@@ -82,9 +80,8 @@ function ParticleField() {
   );
 }
 
-// Floating logo plane (FIXED MIRROR EFFECT)
-function LogoMesh() {
-  // CHANGED: We now use a THREE.Group to hold both front and back faces together
+// Floating logo plane 
+function LogoMesh({ isMobile }: { isMobile: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const { mouse } = useThree();
 
@@ -101,33 +98,19 @@ function LogoMesh() {
     groupRef.current.position.y = Math.sin(time * 0.8) * 0.12;
   });
 
+  const logoScale = isMobile ? 2.8 : 3.5;
+
   return (
     <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
-      {/* Group takes the scaling and movement animations */}
-      <group ref={groupRef} scale={[3.5, 3.5, 3.5]}>
-
-        {/* ─── FRONT FACE ─── */}
+      <group ref={groupRef} scale={[logoScale, logoScale, logoScale]}>
         <mesh>
           <planeGeometry args={[1, 1]} />
-          {/* Note: side={THREE.FrontSide} is the default, so we just remove DoubleSide */}
-          <meshBasicMaterial
-            map={texture}
-            transparent
-            alphaTest={0.01}
-          />
+          <meshBasicMaterial map={texture} transparent alphaTest={0.01} />
         </mesh>
-
-        {/* ─── BACK FACE ─── */}
-        {/* Rotated exactly 180 degrees (Math.PI) so the image reads left-to-right when viewed from behind */}
         <mesh rotation={[0, Math.PI, 0]}>
           <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial
-            map={texture}
-            transparent
-            alphaTest={0.01}
-          />
+          <meshBasicMaterial map={texture} transparent alphaTest={0.01} />
         </mesh>
-
       </group>
     </Float>
   );
@@ -150,6 +133,24 @@ function OrbitalRing({ radius, speed, color }: { radius: number; speed: number; 
 }
 
 export default function HeroCanvas() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // 🪄 THE DOUBLE-TAP MAGIC TRICK 🪄
+    const t1 = setTimeout(() => window.dispatchEvent(new Event("resize")), 100);
+    const t2 = setTimeout(() => window.dispatchEvent(new Event("resize")), 500);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
+
   return (
     <Canvas
       camera={{ position: [0, 0, 6], fov: 50 }}
@@ -159,15 +160,16 @@ export default function HeroCanvas() {
         powerPreference: "high-performance",
       }}
       dpr={[1, 2]}
-      className="w-full h-full"
-      style={{ touchAction: 'pan-y' }} // <--- ADDED: Tells browser to allow vertical scrolling
+      // FIXED: Removed 'absolute inset-0' so it stops overlapping your text!
+      className="w-full h-full outline-none"
+      style={{ touchAction: 'pan-y' }}
     >
       <ambientLight intensity={0.3} />
       <pointLight position={[3, 3, 3]} intensity={2} color="#E60000" />
       <pointLight position={[-3, -3, 3]} intensity={1.5} color="#FFD700" />
 
       <ParticleField />
-      <LogoMesh />
+      <LogoMesh isMobile={isMobile} />
       <OrbitalRing radius={2.2} speed={0.3} color="#E60000" />
       <OrbitalRing radius={2.8} speed={-0.2} color="#FFD700" />
       <OrbitalRing radius={1.8} speed={0.5} color="#CC6600" />
@@ -177,8 +179,8 @@ export default function HeroCanvas() {
         enableZoom={false}
         autoRotate
         autoRotateSpeed={0.5}
-        maxPolarAngle={Math.PI / 2} // <--- CHANGED: Locks vertical rotation
-        minPolarAngle={Math.PI / 2} // <--- CHANGED: Locks vertical rotation
+        maxPolarAngle={Math.PI / 2}
+        minPolarAngle={Math.PI / 2}
       />
     </Canvas>
   );
