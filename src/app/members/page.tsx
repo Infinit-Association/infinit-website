@@ -205,7 +205,7 @@ const coreCommittee: Member[] = [
     dept: "IT – 3rd Year",
     bio: "Directing the narrative and visual flow of all media productions.",
     img: "/Amarnath K.jpg",
-    socials: { email: "mailto:[kamarnath2007@gmail.com]", linkedin: "#", instagram: "https://www.instagram.com/_.sparkyy.___/" },
+    socials: { email: "mailto:[kamarnath2007@gmail.com]", instagram: "https://www.instagram.com/_.sparkyy.___/" },
     color: "#E60000",
   },
   {
@@ -214,7 +214,7 @@ const coreCommittee: Member[] = [
     dept: "IT – 3rd Year",
     bio: "Crafting stunning visual assets and guiding the design workflow.",
     img: "/Sambathkumar C.jpg",
-    socials: { email: "mailto:[sambathsambath09262@gmail.com]", linkedin: "#", instagram: "https://www.instagram.com/csk_kabaddi._.03/" },
+    socials: { email: "mailto:[sambathsambath09262@gmail.com]", instagram: "https://www.instagram.com/csk_kabaddi._.03/" },
     color: "#FFD700",
   },
   {
@@ -223,7 +223,7 @@ const coreCommittee: Member[] = [
     dept: "IT – 2nd Year",
     bio: "Producing polished, high-impact video content and motion graphics.",
     img: "/Tamil Selvan N.jpg",
-    socials: { email: "mailto:[tamilsachin1435@gmail.com]", linkedin: "#", instagram: "https://www.instagram.com/tamilsachin___1435?igsh=MWZjNGM3OGE2Zno5ZQ==" },
+    socials: { email: "mailto:[tamilsachin1435@gmail.com]", instagram: "https://www.instagram.com/tamilsachin___1435?igsh=MWZjNGM3OGE2Zno5ZQ==" },
     color: "#E60000",
   },
   {
@@ -304,7 +304,7 @@ const coreCommittee: Member[] = [
     dept: "IT – 2nd Year",
     bio: "Capturing the journey through meticulous reporting and data tracking.",
     img: "/Anagha U.jpg",
-    socials: { email: "mailto:[anaghaunnikrishnan32@gmail.com]", linkedin: "https://www.linkedin.com/in/anaghaunnikrishnan-undefined-960b5540a/", instagram: "#" },
+    socials: { email: "mailto:[anaghaunnikrishnan32@gmail.com]", linkedin: "https://www.linkedin.com/in/anaghaunnikrishnan-undefined-960b5540a/" },
     color: "#FFD700",
   },
   {
@@ -367,7 +367,7 @@ const coreCommittee: Member[] = [
     dept: "IT – 2nd Year",
     bio: "The dynamic core of the team, executing tasks and driving initiatives forward.",
     img: "/Girijayam M.jpg",
-    socials: { email: "mailto:[mveereshwari24@gmail.com]", linkedin: "https://www.linkedin.com/in/girijeyam-m-5130b642a/", instagram: "#" },
+    socials: { email: "mailto:[mveereshwari24@gmail.com]", linkedin: "https://www.linkedin.com/in/girijeyam-m-5130b642a/" },
     color: "#E60000",
   },
   {
