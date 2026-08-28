@@ -3,6 +3,7 @@ import { Inter, Roboto, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ChatWidget from "@/components/layout/ChatWidget";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -60,6 +61,7 @@ export default function RootLayout({
           </main>
 
           <Footer />
+          <ChatWidget />
         </div>
       </body>
     </html>
