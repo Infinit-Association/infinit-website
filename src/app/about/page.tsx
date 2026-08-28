@@ -142,7 +142,7 @@ export default function AboutPage() {
       style={{ width: "100%", alignSelf: "stretch" }}
     >
       {/* Hero */}
-      <section style={{ width: "100%", maxWidth: "80rem", margin: "0 auto", padding: "5rem 2rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", position: "relative" }}>
+      <section style={{ width: "100%", maxWidth: "80rem", margin: "0 auto", padding: "1rem 2rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", position: "relative" }}>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#E60000]/8 rounded-full blur-[100px] pointer-events-none" />
 
         <motion.div
