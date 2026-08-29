@@ -63,7 +63,7 @@ const GREETING_MESSAGE: Message = {
 };
 
 const QUICK_REPLIES = [
-  "What are the upcoming events?",
+  //"What are the upcoming events?",
   "Who are the faculty advisors?",
   "How do I join InfiniT?",
 ];
